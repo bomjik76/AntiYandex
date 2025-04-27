@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <link rel="icon" type="image/png" href="святпнг.png">
+    <title>СВЯТ ПЕНИЗ</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="controls">
+        <button id="musicToggle" class="control-btn" aria-label="Переключить музыку">🎵</button>
+        <button id="darkModeToggle" class="control-btn" aria-label="Переключить темный режим">🌙</button>
+        <div id="score" aria-live="polite">СИСЬКИ: 0</div>
+    </div>
+    <div class="game-container" tabindex="0">
+        <canvas id="gameCanvas"></canvas>
+        <div id="gameOver" class="hidden" role="alert">
+            <h2>Проебался!</h2>
+            <p>Набрал: <span id="finalScore">0</span></p>
+            <button id="restartButton" aria-label="Начать заново">го по новой</button>
+        </div>
+    </div>
+    <div class="mobile-controls">
+        <button id="leftButton" class="control-btn" aria-label="Двигаться влево">←</button>
+        <button id="rightButton" class="control-btn" aria-label="Двигаться вправо">→</button>
+    </div>
+    <audio id="bgMusic" loop preload="auto">
+        <source src="aleksandr-pushnojj-siski.mp3" type="audio/mp3">
+        Your browser does not support the audio element.
+    </audio>
+    <script src="game.js"></script>
+</body>
+</html>

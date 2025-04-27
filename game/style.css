@@ -1,0 +1,273 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html, body {
+    height: 100%;
+    width: 100%; /* Устанавливаем ширину на 100% */
+    overflow: hidden; /* Предотвращаем прокрутку */
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #f0f0f0;
+    font-family: Arial, sans-serif;
+}
+
+.game-container {
+    position: relative;
+    width: 100%; /* Адаптивная ширина */
+    max-width: 800px; /* Максимальная ширина для ПК */
+    height: 100vh; /* Устанавливаем высоту на 80% от высоты экрана */
+}
+
+#gameCanvas {
+    background-color: white;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    width: 100%; /* Адаптивная ширина */
+    height: 100%; /* Высота на весь экран */
+}
+
+#score {
+    font-size: 24px;
+    color: #333;
+    margin-left: 20px;
+    padding: 5px 10px;
+    background-color: rgba(255, 255, 255, 0.8);
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+#status {
+    font-size: 20px;
+    color: #666;
+    margin-left: 10px;
+    padding: 5px 10px;
+    background-color: rgba(255, 255, 255, 0.7);
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+#gameOver {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: rgba(255, 255, 255, 0.9);
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+}
+
+.hidden {
+    display: none;
+}
+
+#restartButton {
+    margin-top: 20px;
+    padding: 10px 20px;
+    font-size: 18px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+#restartButton:hover {
+    background-color: #45a049;
+}
+
+/* Dark mode styles */
+body.dark-mode {
+    background-color: #1a1a1a;
+}
+
+.game-container.dark-mode {
+    background-color: #2d2d2d;
+}
+
+#gameCanvas.dark-mode {
+    background-color: #333;
+    border-color: #555;
+}
+
+#score.dark-mode,
+#status.dark-mode {
+    color: #fff;
+    background-color: rgba(0, 0, 0, 0.8);
+    box-shadow: 0 2px 5px rgba(255, 255, 255, 0.1);
+}
+
+#gameOver.dark-mode {
+    background-color: rgba(0, 0, 0, 0.9);
+    color: #fff;
+}
+
+/* Control buttons styles */
+.controls {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    display: flex;
+    gap: 10px;
+    z-index: 1000;
+    align-items: center;
+}
+
+.control-btn {
+    width: 40px;
+    height: 40px;
+    border: none;
+    border-radius: 50%;
+    background-color: #fff;
+    color: #333;
+    font-size: 20px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    touch-action: manipulation;
+    -webkit-tap-highlight-color: transparent;
+}
+
+.control-btn:hover {
+    background-color: #f0f0f0;
+    transform: scale(1.1);
+}
+
+.control-btn.active {
+    background-color: #4CAF50;
+    color: #fff;
+}
+
+/* Dark mode button styles */
+.control-btn.dark-mode {
+    background-color: #333;
+    color: #fff;
+}
+
+.control-btn.dark-mode:hover {
+    background-color: #444;
+}
+
+.control-btn.dark-mode.active {
+    background-color: #4CAF50;
+    color: #000;
+}
+
+.mobile-controls {
+    position: fixed;
+    bottom: 20px;
+    left: 0;
+    right: 0;
+    display: flex;
+    justify-content: space-between;
+    padding: 0 20px;
+    z-index: 1000;
+    display: none; /* Скрываем кнопки по умолчанию */
+}
+
+.mobile-controls .control-btn {
+    width: 150px; /* Увеличиваем ширину кнопок */
+    height: 150px; /* Увеличиваем высоту кнопок */
+    font-size: 48px; /* Увеличиваем размер шрифта */
+    background-color: rgba(255, 255, 255, 0.8);
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.mobile-controls .control-btn:hover {
+    background-color: rgba(255, 255, 255, 1);
+}
+
+/* Медиа-запрос для мобильных устройств */
+@media only screen and (max-width: 768px) {
+    html {
+        touch-action: manipulation;
+    }
+
+    body {
+        overflow: hidden;
+        -webkit-overflow-scrolling: touch;
+        touch-action: pan-y;
+    }
+
+    .game-container {
+        width: 100vw;
+        height: 100vh;
+        max-width: 100%;
+        margin: 0;
+        padding: 0;
+    }
+    
+    #gameCanvas {
+        width: 100%;
+        height: 100%;
+        border: none;
+        touch-action: none;
+    }
+
+    .controls {
+        display: flex;
+        position: fixed;
+        top: 20px;
+        left: 20px;
+        z-index: 1000;
+        align-items: center;
+    }
+
+    .mobile-controls {
+        display: flex !important;
+        padding: 0 20px;
+        margin: 0;
+        background: none;
+    }
+
+    .mobile-controls .control-btn {
+        width: 90px;
+        height: 90px;
+        font-size: 36px;
+        background-color: rgba(255, 255, 255, 0.8);
+        border: 2px solid rgba(255, 255, 255, 0.5);
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    }
+
+    .mobile-controls .control-btn:active {
+        transform: scale(0.95);
+        background-color: rgba(255, 255, 255, 1);
+    }
+
+    #score {
+        position: fixed;
+        top: 20px;
+        left: 50%;
+        transform: translateX(-50%);
+        font-size: 24px;
+        background-color: rgba(255, 255, 255, 0.8);
+        padding: 10px 20px;
+        border-radius: 20px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    }
+
+    #gameOver {
+        width: 90%;
+        max-width: 400px;
+        padding: 30px;
+        border-radius: 15px;
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+    }
+
+    #restartButton {
+        width: 100%;
+        padding: 15px;
+        font-size: 24px;
+        border-radius: 10px;
+    }
+}

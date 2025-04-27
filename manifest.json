@@ -1,0 +1,35 @@
+{
+  "manifest_version": 3,
+  "name": "AntiYandex",
+  "version": "1.0",
+  "description": "Не дает зайти на сраные сайты яндекса",
+  "permissions": [
+    "webNavigation",
+    "storage"
+  ],
+  "host_permissions": [
+    "*://*.yandex.ru/*",
+    "*://*.yandex.com/*",
+    "*://*.yandex.net/*",
+    "*://*.yandex/*",
+    "*://yandex/*",
+    "*://*.yandex.cloud/*",
+    "*://*.ya.ru/*",
+    "*://*.dzen.ru/*",
+    "*://*.elama.ru/*"
+  ],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "action": {
+    "default_popup": "popup.html",
+    "default_icon": {
+      "48": "icon48.png",
+      "128": "icon128.png"
+    }
+  },
+  "icons": {
+    "48": "icon48.png",
+    "128": "icon128.png"
+  }
+} 
