@@ -9,7 +9,7 @@ const musicToggle = document.getElementById('musicToggle');
 const darkModeToggle = document.getElementById('darkModeToggle');
 
 // Set initial volume (0.5 = 50%)
-bgMusic.volume = 0.1;
+bgMusic.volume = 0.05;
 
 // Add click event listener to start music
 let musicStarted = false;
